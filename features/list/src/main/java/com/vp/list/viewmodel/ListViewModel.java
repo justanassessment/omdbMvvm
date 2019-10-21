@@ -1,9 +1,9 @@
 package com.vp.list.viewmodel;
 
+import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
-import androidx.annotation.NonNull;
 
 import com.vp.list.model.ListItem;
 import com.vp.list.model.SearchResponse;
@@ -49,6 +49,7 @@ public class ListViewModel extends ViewModel {
 
                 if (result != null) {
                     aggregatedItems.addAll(result.getSearch());
+                    liveData.setValue(SearchResult.success(aggregatedItems, result.getTotalResults()));
                 }
             }
 
