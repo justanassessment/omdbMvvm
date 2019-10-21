@@ -1,17 +1,9 @@
 package com.vp.list;
 
-import androidx.lifecycle.ViewModelProvider;
-import androidx.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.net.Uri;
 import android.os.Bundle;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,8 +11,17 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.ViewAnimator;
 
-import com.vp.list.viewmodel.SearchResult;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.vp.list.viewmodel.ListViewModel;
+import com.vp.list.viewmodel.SearchResult;
 
 import javax.inject.Inject;
 
@@ -29,6 +30,9 @@ import dagger.android.support.AndroidSupportInjection;
 public class ListFragment extends Fragment implements GridPagingScrollListener.LoadMoreItemsListener, ListAdapter.OnItemClickListener {
     public static final String TAG = "ListFragment";
     private static final String CURRENT_QUERY = "current_query";
+    private static final String EXTRA_IMDB_ID = "imdbID";
+    private static final String DETAIL_FEATURE_DEEPLINK = "app://movies/detail";
+    private static final String DETAIL_QUERY = "?imdbID=";
 
     @Inject
     ViewModelProvider.Factory factory;
@@ -164,6 +168,10 @@ public class ListFragment extends Fragment implements GridPagingScrollListener.L
 
     @Override
     public void onItemClick(String imdbID) {
-        //TODO handle click events
+        Uri uri = Uri.parse(DETAIL_FEATURE_DEEPLINK + DETAIL_QUERY + imdbID);
+        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+        intent.putExtra(EXTRA_IMDB_ID, imdbID);
+        intent.setPackage(requireActivity().getPackageName());
+        startActivity(intent);
     }
 }
