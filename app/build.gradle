@@ -1,8 +1,7 @@
 apply plugin: 'com.android.application'
 
-apply plugin: 'kotlin-android'
-
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
 
 def localProperties = new Properties()
@@ -19,6 +18,7 @@ android {
     }
     buildTypes {
         debug {
+            debuggable true
             minifyEnabled false
         }
         debugProguard {
@@ -43,7 +43,9 @@ dependencies {
     implementation project(':features:detail')
     implementation project(':features:favorites')
     implementation project(':dagger.addons')
+    implementation project(':data')
 
+    implementation "org.jetbrains.kotlin:kotlin-reflect:$rootProject.kotlin"
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$rootProject.kotlin"
 
     //support

@@ -175,6 +175,7 @@ public class ListFragment extends Fragment implements GridPagingScrollListener.L
         showProgressBar();
     }
 
+    //ToDo: Fix double click bug: opens multiple detail screens.
     @Override
     public void onItemClick(String imdbID) {
         Uri uri = Uri.parse(DETAIL_FEATURE_DEEPLINK + DETAIL_QUERY + imdbID);

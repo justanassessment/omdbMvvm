@@ -3,7 +3,7 @@
     package="com.vp.favorites">
 
     <application>
-        <activity android:name=".FavoriteActivity"
+        <activity android:name=".FavoriteMoviesActivity"
             android:label="@string/activity_label">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />

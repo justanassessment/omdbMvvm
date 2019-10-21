@@ -58,8 +58,12 @@ public class MovieListActivity extends AppCompatActivity implements HasSupportFr
             @Override
             public boolean onQueryTextSubmit(String query) {
                 ListFragment listFragment = (ListFragment) getSupportFragmentManager().findFragmentByTag(ListFragment.TAG);
-                listFragment.submitSearchQuery(query);
-                return true;
+                if (listFragment != null) {
+                    listFragment.submitSearchQuery(query);
+                    return true;
+                } else {
+                    return false;
+                }
             }
 
             @Override

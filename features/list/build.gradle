@@ -9,6 +9,7 @@ android {
     defaultConfig {
         minSdkVersion rootProject.minSdkVersion
         targetSdkVersion rootProject.targetSdkVersion
+
         testInstrumentationRunner "com.android.support.test.runner.AndroidJUnitRunner"
 
     }
@@ -28,7 +29,7 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
 }
-
+//ToDo: Fix version numbers and change on proper names
 dependencies {
     implementation project(':dagger.addons')
 
@@ -51,6 +52,9 @@ dependencies {
     implementation "androidx.recyclerview:recyclerview:$rootProject.supportLibraryVersion"
     implementation "androidx.constraintlayout:constraintlayout:$rootProject.constraintLayout"
     implementation "com.google.android.material:material:$rootProject.supportLibraryVersion"
+
+    //kotlin
+    implementation 'org.jetbrains.kotlin:kotlin-reflect:1.3.50'
 
     //api
     api "com.squareup.retrofit2:retrofit:$rootProject.retrofit"
