@@ -22,6 +22,7 @@ buildscript {
         roomVersion = '2.2.0'
         androidxArchVersion = '2.0.0'
         coroutines = '1.2.0'
+        mockito = '2.23.0'
     }
 
     repositories {

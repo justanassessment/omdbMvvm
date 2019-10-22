@@ -23,20 +23,20 @@ internal constructor(private val searchService: SearchService) : ViewModel() {
         return liveData
     }
 
-    fun searchMoviesByTitle(title: String, page: Int) {
+    fun searchMoviesByTitle(title: String?, page: Int) {
 
         if (page == 1 && title != currentTitle) {
             aggregatedItems.clear()
-            currentTitle = title
+            currentTitle = title.toString()
             liveData.value = SearchResult.inProgress()
         }
-        searchService.search(title, page).enqueue(object : Callback<SearchResponse> {
+        searchService.search(title.toString(), page).enqueue(object : Callback<SearchResponse> {
             override fun onResponse(call: Call<SearchResponse>, response: Response<SearchResponse>) {
 
                 val result = response.body()
 
                 if (result != null) {
-                    val searchResult = result.search
+                    val searchResult = result.getSearch()
                     aggregatedItems.addAll(searchResult)
                     liveData.value = SearchResult.success(searchResult, searchResult.size)
                 }
