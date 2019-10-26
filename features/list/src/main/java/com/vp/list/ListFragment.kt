@@ -57,6 +57,7 @@ class ListFragment : Fragment(), GridPagingScrollListener.LoadMoreItemsListener,
         errorTextView = view.findViewById(R.id.errorText)
         swipeRefreshLayout = view.findViewById(R.id.swipeRefresher)
         swipeRefreshLayout?.setOnRefreshListener {
+            listAdapter?.clearItems()
             listViewModel?.searchMoviesByTitle(currentQuery, 1)
             swipeRefreshLayout?.isRefreshing = false
             showProgressBar()
@@ -151,6 +152,7 @@ class ListFragment : Fragment(), GridPagingScrollListener.LoadMoreItemsListener,
 
     override fun loadMoreItems(page: Int) {
         gridPagingScrollListener?.markLoading(true)
+        showProgressBar()
         listViewModel?.searchMoviesByTitle(currentQuery, page)
     }
 

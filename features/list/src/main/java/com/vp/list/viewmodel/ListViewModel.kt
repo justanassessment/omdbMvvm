@@ -24,13 +24,13 @@ internal constructor(private val searchService: SearchService) : ViewModel() {
     }
 
     fun searchMoviesByTitle(title: String?, page: Int) {
-
+        if (title.isNullOrBlank()) return
         if (page == 1 && title != currentTitle) {
             aggregatedItems.clear()
-            currentTitle = title.toString()
+            currentTitle = title
             liveData.value = SearchResult.inProgress()
         }
-        searchService.search(title.toString(), page).enqueue(object : Callback<SearchResponse> {
+        searchService.search(title, page).enqueue(object : Callback<SearchResponse> {
             override fun onResponse(call: Call<SearchResponse>, response: Response<SearchResponse>) {
 
                 val result = response.body()
@@ -38,7 +38,7 @@ internal constructor(private val searchService: SearchService) : ViewModel() {
                 if (result != null) {
                     val searchResult = result.getSearch()
                     aggregatedItems.addAll(searchResult)
-                    liveData.value = SearchResult.success(searchResult, searchResult.size)
+                    liveData.value = SearchResult.success(aggregatedItems, result.totalResults)
                 }
             }
 
