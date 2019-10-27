@@ -163,12 +163,12 @@ class ListFragment : Fragment(), GridPagingScrollListener.LoadMoreItemsListener,
         showProgressBar()
     }
 
-    //ToDo: Fix double click bug: opens multiple detail screens.
     override fun onItemClick(imdbID: String) {
         val uri = Uri.parse(DETAIL_FEATURE_DEEPLINK + DETAIL_QUERY + imdbID)
         val intent = Intent(Intent.ACTION_VIEW, uri)
         intent.putExtra(EXTRA_IMDB_ID, imdbID)
-        intent.setPackage(requireActivity().getPackageName())
+        intent.setPackage(requireActivity().packageName)
+        intent.flags = Intent.FLAG_ACTIVITY_SINGLE_TOP
         startActivity(intent)
     }
 
