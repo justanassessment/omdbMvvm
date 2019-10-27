@@ -54,9 +54,9 @@ dependencies {
 
     //support library
     implementation "androidx.appcompat:appcompat:$rootProject.supportLibraryVersion"
-    implementation "androidx.recyclerview:recyclerview:$rootProject.supportLibraryVersion"
     implementation "androidx.constraintlayout:constraintlayout:$rootProject.constraintLayout"
-    implementation "com.google.android.material:material:$rootProject.supportLibraryVersion"
+    implementation "androidx.recyclerview:recyclerview:$rootProject.recyclerviewAndMaterial"
+    implementation "com.google.android.material:material:$rootProject.recyclerviewAndMaterial"
 
     //architecture components
     implementation "androidx.lifecycle:lifecycle-extensions:$rootProject.lifecycle"
@@ -70,7 +70,7 @@ dependencies {
 
     //test
     testImplementation "org.assertj:assertj-core:3.11.1"
-    testImplementation 'junit:junit:4.12'
+    testImplementation "junit:junit:$rootProject.junit"
     testImplementation "org.mockito:mockito-core:2.23.0"
     testImplementation "com.squareup.retrofit2:retrofit-mock:$rootProject.retrofit"
     testImplementation 'androidx.arch.core:core-testing:2.1.0'

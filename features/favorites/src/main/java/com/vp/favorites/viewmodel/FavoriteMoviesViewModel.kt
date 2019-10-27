@@ -1,4 +1,4 @@
-package com.vp.favorites
+package com.vp.favorites.viewmodel
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel

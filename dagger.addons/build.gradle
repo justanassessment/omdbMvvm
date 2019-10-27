@@ -42,7 +42,7 @@ dependencies {
     implementation "com.google.dagger:dagger-android-support:$rootProject.dagger"
     kapt "com.google.dagger:dagger-android-processor:$rootProject.dagger"
 
-    testImplementation 'junit:junit:4.12'
+    testImplementation "junit:junit:$rootProject.junit"
     androidTestImplementation 'androidx.test:runner:1.2.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 }

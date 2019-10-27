@@ -11,7 +11,9 @@ buildscript {
 
         //dependencies
         kotlin = '1.3.50'
-        supportLibraryVersion = '1.0.0'
+        supportLibraryVersion = '1.1.0'
+        recyclerviewAndMaterial = '1.0.0'
+        supportLibraryVersion = '1.1.0'
         constraintLayout = '1.1.3'
         retrofit = '2.4.0'
         lifecycle = '2.1.0'
@@ -23,6 +25,7 @@ buildscript {
         androidxArchVersion = '2.0.0'
         coroutines = '1.2.0'
         mockito = '2.23.0'
+        junit = '4.12'
     }
 
     repositories {

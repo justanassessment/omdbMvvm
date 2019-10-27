@@ -68,6 +68,6 @@ class FavoritesMoviesAdapter internal constructor(
     }
 
     companion object {
-        private val NO_IMAGE = "N/A"
+        private const val NO_IMAGE = "N/A"
     }
 }

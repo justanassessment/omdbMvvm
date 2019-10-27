@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.vp.daggeraddons.DaggerViewModelFactory
 import com.vp.daggeraddons.ViewModelKey
-import com.vp.favorites.FavoriteMoviesViewModel
+import com.vp.favorites.viewmodel.FavoriteMoviesViewModel
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap

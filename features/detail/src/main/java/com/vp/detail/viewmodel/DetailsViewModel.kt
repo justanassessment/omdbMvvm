@@ -1,7 +1,6 @@
 package com.vp.detail.viewmodel
 
 import android.app.Application
-import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -38,12 +37,26 @@ class DetailsViewModel @Inject constructor(private val detailService: DetailServ
         repository = FavoriteMoviesRepository(favoriteMoviesDao)
     }
 
+    /**
+     * @return title (LiveData) of a specified movie
+     */
     fun title(): LiveData<String> = title
 
+    /**
+     * @return details (LiveData) of a specified movie
+     */
     fun details(): LiveData<MovieDetail> = details
 
+    /**
+     * @return current loading state (LiveData) of a clicked movie. It can be: 1) loaded, 2) in progress or 3) error
+     */
     fun state(): LiveData<LoadingState> = loadingState
 
+    /**
+     * Fetches details of a specified movie
+     *
+     * @param movieId imdbID of a clicked movie
+     */
     fun fetchDetails(movieId: String) {
         loadingState.value = LoadingState.IN_PROGRESS
         detailService.getMovie(movieId).enqueue(object : Callback, retrofit2.Callback<MovieDetail> {
@@ -62,19 +75,34 @@ class DetailsViewModel @Inject constructor(private val detailService: DetailServ
         })
     }
 
+    /**
+     * Adds a specified movie to a list (local RoomDataBase) of favorite movies
+     *
+     * @param movieId imdbID of a specified movie
+     */
     fun addToFavoriteMovies(movieId: String) = scope.launch(Dispatchers.IO) {
         val favoriteMovie = FavoriteMovieEntity(movieId, details.value?.poster)
-        Log.e("addToFavoriteMovies", favoriteMovie.toString())
         repository.insert(favoriteMovie)
     }
 
+    /**
+     * Deletes a specified movie to a list (local RoomDataBase) of favorite movies
+     *
+     * @param movieId imdbID of a specified movie
+     */
     fun deleteFromFavoriteMovies(movieId: String) = scope.launch(Dispatchers.IO) {
         //ToDo: Check for bugs in case of null poster
         val favoriteMovie = FavoriteMovieEntity(movieId, details.value?.poster)
         repository.delete(favoriteMovie)
     }
 
-    fun isFavoriteMovie(movieId: String): LiveData<FavoriteMovieEntity>? {
+    /**
+     * Returns favorite movie entity (LiveData) of a specified movie
+     *
+     * @param movieId imdbID of a specified movie
+     * @return {@code LiveData<FavoriteMovieEntity>}
+     */
+    fun getFavoriteMovieById(movieId: String): LiveData<FavoriteMovieEntity>? {
         return repository.getFavoriteById(movieId)
     }
 

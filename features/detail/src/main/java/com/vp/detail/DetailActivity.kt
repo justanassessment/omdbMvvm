@@ -1,18 +1,16 @@
 package com.vp.detail
 
+import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
+import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
-import androidx.databinding.DataBindingUtil
-import android.os.Bundle
-import android.util.Log
-import android.view.Menu
-import android.view.MenuItem
 import com.vp.detail.databinding.ActivityDetailBinding
 import com.vp.detail.viewmodel.DetailsViewModel
 import dagger.android.support.DaggerAppCompatActivity
 import javax.inject.Inject
-import kotlin.run
 
 class DetailActivity : DaggerAppCompatActivity(), QueryProvider {
 
@@ -40,7 +38,7 @@ class DetailActivity : DaggerAppCompatActivity(), QueryProvider {
     }
 
     private fun checkAndSetupFavoriteIcon(menu: Menu) {
-        detailsViewModel.isFavoriteMovie(getMovieId())?.observe(this, Observer {
+        detailsViewModel.getFavoriteMovieById(getMovieId())?.observe(this, Observer {
             favoriteMovie ->
             val isFavorite = (favoriteMovie != null)
             //ToDo: Change to findItem
@@ -57,15 +55,12 @@ class DetailActivity : DaggerAppCompatActivity(), QueryProvider {
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         return when (item?.itemId) {
             R.id.star -> {
-                Log.e("menuOptions", "star")
                 if(item.isChecked){
                     item.isChecked = false
-                    Log.e("menuOptions", "delete")
                     deleteFromFavoriteMovies()
                 } else {
                     item.isChecked = true
                     addToFavoriteMovies()
-                    Log.e("menuOptions", "add")
                 }
                 return true
             }

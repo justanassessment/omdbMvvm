@@ -19,10 +19,21 @@ internal constructor(private val searchService: SearchService) : ViewModel() {
     private var currentTitle = ""
     private val aggregatedItems = ArrayList<ListItem>()
 
+    /**
+     * Observes search results for a specific movie query
+     *
+     * @return {@link SearchResult} (LiveData) of a search for a specific movie title query
+     */
     fun observeMovies(): LiveData<SearchResult> {
         return liveData
     }
 
+    /**
+     * Invokes a search of a specified title among movies in The OMDb API
+     *
+     * @param title name of a specified movie
+     * @param page page number to return
+     */
     fun searchMoviesByTitle(title: String?, page: Int) {
         if (title.isNullOrBlank()) return
         if (page == 1 && title != currentTitle) {

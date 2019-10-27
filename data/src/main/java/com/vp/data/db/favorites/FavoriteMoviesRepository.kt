@@ -1,6 +1,5 @@
 package com.vp.data.db.favorites
 
-import android.util.Log
 import androidx.annotation.WorkerThread
 import androidx.lifecycle.LiveData
 import com.vp.data.db.favorites.dao.FavoriteMoviesDao
@@ -13,9 +12,7 @@ class FavoriteMoviesRepository(private val favoriteMoviesDao: FavoriteMoviesDao)
     @Suppress("RedundantSuspendModifier")
     @WorkerThread
     suspend fun insert(favoriteMovieEntity: FavoriteMovieEntity) {
-        Log.e("insert", favoriteMovieEntity.toString())
         favoriteMoviesDao.insert(favoriteMovieEntity)
-        Log.e("insert", favoriteMoviesDao.getAllFavorites().toString())
     }
 
     @Suppress("RedundantSuspendModifier")
