@@ -1,7 +1,7 @@
 package com.vp.favorites
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import dagger.android.AndroidInjection
 import dagger.android.AndroidInjector
@@ -20,7 +20,6 @@ class FavoriteMoviesActivity : AppCompatActivity(), HasSupportFragmentInjector {
         setContentView(R.layout.activity_favorite_movies)
 
         if (savedInstanceState == null) {
-            // ToDo: Consider https://stackoverflow.com/a/18245191
             supportFragmentManager
                 .beginTransaction()
                 .replace(R.id.favorite_movies_list_container, FavoriteMoviesFragment())

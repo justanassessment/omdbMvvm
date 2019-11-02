@@ -1,7 +1,7 @@
 apply plugin: 'com.android.application'
 
-apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 
 def localProperties = new Properties()
@@ -45,6 +45,21 @@ dependencies {
     implementation project(':dagger.addons')
     implementation project(':data')
 
+    //api
+    implementation "com.squareup.okhttp3:logging-interceptor:$rootProject.okhttp"
+    implementation "com.squareup.retrofit2:converter-gson:$rootProject.retrofit"
+
+    //dagger
+    implementation "com.google.dagger:dagger:$rootProject.dagger"
+    implementation "com.google.dagger:dagger-android:$rootProject.dagger"
+    implementation "com.google.dagger:dagger-android-support:$rootProject.dagger"
+    kapt "com.google.dagger:dagger-android-processor:$rootProject.dagger"
+    kapt "com.google.dagger:dagger-compiler:$rootProject.dagger"
+
+    //debug
+    debugImplementation "com.squareup.leakcanary:leakcanary-android:$rootProject.leakcanary"
+
+    //kotlin
     implementation "org.jetbrains.kotlin:kotlin-reflect:$rootProject.kotlin"
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$rootProject.kotlin"
 
@@ -52,22 +67,8 @@ dependencies {
     implementation "androidx.appcompat:appcompat:$rootProject.supportLibraryVersion"
     implementation "androidx.constraintlayout:constraintlayout:$rootProject.constraintLayout"
 
-    //dagger
-    implementation "com.google.dagger:dagger:$rootProject.dagger"
-    kapt "com.google.dagger:dagger-compiler:$rootProject.dagger"
-    implementation "com.google.dagger:dagger-android:$rootProject.dagger"
-    implementation "com.google.dagger:dagger-android-support:$rootProject.dagger"
-    kapt "com.google.dagger:dagger-android-processor:$rootProject.dagger"
-
-    //api
-    implementation "com.squareup.okhttp3:logging-interceptor:$rootProject.okhttp"
-    implementation "com.squareup.retrofit2:converter-gson:$rootProject.retrofit"
-
     //test
+    androidTestImplementation "androidx.test.espresso:espresso-core:$rootProject.espresso"
+    androidTestImplementation "androidx.test:runner:$rootProject.testRunner"
     testImplementation "junit:junit:$rootProject.junit"
-    androidTestImplementation 'androidx.test:runner:1.2.0'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
-
-    //debug
-    debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.0-beta-3'
 }

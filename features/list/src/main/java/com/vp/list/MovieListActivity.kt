@@ -26,7 +26,6 @@ class MovieListActivity : AppCompatActivity(), HasSupportFragmentInjector {
         setContentView(R.layout.activity_movie_list)
 
         if (savedInstanceState == null) {
-            // ToDo: Consider https://stackoverflow.com/a/18245191
             supportFragmentManager
                 .beginTransaction()
                 .replace(R.id.fragmentContainer, ListFragment(), ListFragment.TAG)

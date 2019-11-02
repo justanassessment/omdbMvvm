@@ -10,22 +10,27 @@ buildscript {
         targetSdkVersion = 28
 
         //dependencies
-        kotlin = '1.3.50'
-        supportLibraryVersion = '1.1.0'
-        recyclerviewAndMaterial = '1.0.0'
-        supportLibraryVersion = '1.1.0'
-        constraintLayout = '1.1.3'
-        retrofit = '2.4.0'
-        lifecycle = '2.1.0'
-        gson = '2.8.2'
-        dagger = '2.20'
-        glide = '4.10.0'
-        okhttp = '3.10.0'
-        roomVersion = '2.2.0'
         androidxArchVersion = '2.0.0'
+        archCoreTesting = '2.1.0'
+        assertj = '3.11.1'
+        constraintLayout = '1.1.3'
         coroutines = '1.2.0'
-        mockito = '2.23.0'
+        dagger = '2.20'
+        espresso = '3.2.0'
+        extJunit = '1.1.1'
+        gson = '2.8.2'
+        glide = '4.10.0'
         junit = '4.12'
+        kotlin = '1.3.50'
+        leakcanary = '2.0-beta-3'
+        lifecycle = '2.1.0'
+        mockito = '2.23.0'
+        okhttp = '3.10.0'
+        recyclerviewAndMaterial = '1.0.0'
+        retrofit = '2.4.0'
+        roomVersion = '2.2.1'
+        supportLibraryVersion = '1.1.0'
+        testRunner = '1.2.0'
     }
 
     repositories {
@@ -36,6 +41,7 @@ buildscript {
         classpath "com.android.tools.build:gradle:$androidPluginVersion"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath "com.netflix.nebula:gradle-lint-plugin:16.0.1"
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
@@ -48,6 +54,10 @@ allprojects {
         jcenter()
         mavenCentral()
     }
+//    ToDo: Check for unused dependencies
+//    apply plugin: 'nebula.lint'
+//    gradleLint.rules = ['all-dependency']
+//    gradleLint.rules += 'unused-dependency'
 }
 
 task clean(type: Delete) {

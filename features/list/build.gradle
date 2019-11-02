@@ -29,23 +29,30 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
 }
-//ToDo: Fix version numbers and change on proper names
+
 dependencies {
     implementation project(':dagger.addons')
+
+    //architecture components
+    implementation "androidx.lifecycle:lifecycle-extensions:$rootProject.lifecycle"
+
+    //api
+    api "com.squareup.retrofit2:retrofit:$rootProject.retrofit"
+    implementation "com.google.code.gson:gson:$rootProject.gson"
+
+    //dagger
+    implementation "com.google.dagger:dagger:$rootProject.dagger"
+    implementation "com.google.dagger:dagger-android:$rootProject.dagger"
+    implementation("com.google.dagger:dagger-android-support:$rootProject.dagger")
+    kapt "com.google.dagger:dagger-android-processor:$rootProject.dagger"
+    kapt "com.google.dagger:dagger-compiler:$rootProject.dagger"
 
     //glide
     implementation "com.github.bumptech.glide:glide:$rootProject.glide"
     kapt "com.github.bumptech.glide:compiler:$rootProject.glide"
 
-    //dagger
-    implementation "com.google.dagger:dagger:$rootProject.dagger"
-    kapt "com.google.dagger:dagger-compiler:$rootProject.dagger"
-    implementation "com.google.dagger:dagger-android:$rootProject.dagger"
-    implementation("com.google.dagger:dagger-android-support:$rootProject.dagger")
-    kapt "com.google.dagger:dagger-android-processor:$rootProject.dagger"
-
-    //architecture components
-    implementation "androidx.lifecycle:lifecycle-extensions:$rootProject.lifecycle"
+    //kotlin
+    implementation "org.jetbrains.kotlin:kotlin-reflect:$rootProject.kotlin"
 
     //support library
     implementation "androidx.appcompat:appcompat:$rootProject.supportLibraryVersion"
@@ -53,20 +60,13 @@ dependencies {
     implementation "androidx.recyclerview:recyclerview:$rootProject.recyclerviewAndMaterial"
     implementation "com.google.android.material:material:$rootProject.recyclerviewAndMaterial"
 
-    //kotlin
-    implementation "org.jetbrains.kotlin:kotlin-reflect:$rootProject.kotlin"
-
-    //api
-    api "com.squareup.retrofit2:retrofit:$rootProject.retrofit"
-    implementation "com.google.code.gson:gson:$rootProject.gson"
-
     //test
-    testImplementation "org.assertj:assertj-core:3.11.1"
+    androidTestImplementation "androidx.test:runner:$rootProject.testRunner"
+    androidTestImplementation "androidx.test.espresso:espresso-core:$rootProject.espresso"
+    testImplementation "androidx.arch.core:core-testing:$rootProject.archCoreTesting"
+    testImplementation "com.squareup.retrofit2:retrofit-mock:$rootProject.retrofit"
     testImplementation "junit:junit:$rootProject.junit"
+    testImplementation "org.assertj:assertj-core:$rootProject.assertj"
     testImplementation "org.mockito:mockito-core:$rootProject.mockito"
     testImplementation "org.mockito:mockito-inline:$rootProject.mockito"
-    testImplementation "com.squareup.retrofit2:retrofit-mock:$rootProject.retrofit"
-    testImplementation 'androidx.arch.core:core-testing:2.1.0'
-    androidTestImplementation 'androidx.test:runner:1.2.0'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 }
